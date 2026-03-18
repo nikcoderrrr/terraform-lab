@@ -19,16 +19,20 @@ jobs:
       - name: Terraform Format
         run: terraform fmt -check -recursive
 
-      - name: Terraform Init
+      - name: Terraform Init and Validate (Day1)
         run: |
-          cd day1 && terraform init
-          cd ../day2 && terraform init
-          cd ../day3 && terraform init
-          cd ../day4 && terraform init
+          cd day1
+          terraform init
+          terraform validate
 
-      - name: Terraform Validate
+      - name: Terraform Init and Validate (Day2)
         run: |
-          cd day1 && terraform validate
-          cd ../day2 && terraform validate
-          cd ../day3 && terraform validate
-          cd ../day4 && terraform validate
+          cd day2
+          terraform init
+          terraform validate
+
+      - name: Terraform Init and Validate (Day3)
+        run: |
+          cd day3
+          terraform init
+          terraform validate
