@@ -10,23 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
 
-    - name: Terraform Format
-      run: terraform fmt -check -recursive
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
 
-    - name: Terraform Init
-      run: terraform init
-      working-directory: day3
+      - name: Terraform Init
+        run: |
+          cd day1 && terraform init
+          cd ../day2 && terraform init
+          cd ../day3 && terraform init
+          cd ../day4 && terraform init
 
-    - name: Terraform Validate
-      run: terraform validate
-      working-directory: day3
-
-    - name: Terraform Plan
-      run: terraform plan
-      working-directory: day3
+      - name: Terraform Validate
+        run: |
+          cd day1 && terraform validate
+          cd ../day2 && terraform validate
+          cd ../day3 && terraform validate
+          cd ../day4 && terraform validate
